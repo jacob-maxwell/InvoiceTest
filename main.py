@@ -2,7 +2,7 @@ import veryfi
 import pprint
 import tkinter as tk
 from tkinter import filedialog
-import os, sys
+import os, sys, json
 
 root = tk.Tk()
 root.withdraw()
@@ -15,11 +15,12 @@ api_key = "4068312b429a6076c8ed5e9b130df234"
 client = veryfi.Client(client_id, client_secret, username, api_key)
 
 selectedFile = filedialog.askopenfilename()
+print(selectedFile)
 
 categories = ["Travel", "Freight", "Airfare", "Lodging", "Job Supplies and Materials", "Groceries"]
 json_result = client.process_document(selectedFile, categories)
 
-file = filedialog.asksaveasfile(mode = 'w', defaultextension = '.text')
+file = filedialog.asksaveasfile(mode = 'w', defaultextension = '.txt')
 
 if file:
     pprint.pprint(json_result, file)
